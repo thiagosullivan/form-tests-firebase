@@ -1,6 +1,6 @@
 import React from 'react'
 
-function PageFifteen({ formData, setFormData }) {
+function PageFifteen({ formData, setFormData, onusImg, setOnusImg }) {
 
     const BrazilStates = [
         {name: 'Acre'},
@@ -35,7 +35,7 @@ function PageFifteen({ formData, setFormData }) {
   return (
     <div className='pageForm_fifteen'>
         <h2>Dados do imóvel de garantia</h2>
-        <div className='pageForm_fifteen_row'>
+        <div className='pageForm_fifteen_row form_input'>
             <label htmlFor='registryName'>Cartório <span className='inpunt__required'>*</span></label>
             <input
                 id="registryName"
@@ -44,7 +44,7 @@ function PageFifteen({ formData, setFormData }) {
                 onChange={(e) => setFormData({...formData, registryName: e.target.value})}
             />
         </div>
-        <div className='pageForm_fifteen_row'>
+        <div className='pageForm_fifteen_row form_input'>
             <label htmlFor='registryRegistration'>Matrícula <span className='inpunt__required'>*</span></label>
             <input
                 id="registryRegistration"
@@ -53,7 +53,7 @@ function PageFifteen({ formData, setFormData }) {
                 onChange={(e) => setFormData({...formData, registryRegistration: e.target.value})}
             />
         </div>
-        <div className='pageForm_fifteen_row'>
+        <div className='pageForm_fifteen_row form_input'>
             <label htmlFor='resgistryHouseType'>Tipo do Imóvel <span className='inpunt__required'>*</span></label>
             <select
                 value={formData.resgistryHouseType}
@@ -64,7 +64,7 @@ function PageFifteen({ formData, setFormData }) {
                 <option value="Residencial">Residencial</option>
             </select>
         </div>
-        <div className='pageForm_fifteen_row'>
+        <div className='pageForm_fifteen_row form_input'>
             <label htmlFor='registryHousePaid'>O imóvel é quitado? <span className='inpunt__required'>*</span></label>
             <select
                 value={formData.registryHousePaid}
@@ -75,7 +75,7 @@ function PageFifteen({ formData, setFormData }) {
                 <option value="Não">Não</option>
             </select>
         </div>
-        <div className='pageForm_fifteen_row'>
+        <div className='pageForm_fifteen_row form_input'>
             <label htmlFor='registrySellPrice'>Valor de Venda <span className='inpunt__required'>*</span></label>
             <input
                 id="registrySellPrice"
@@ -84,7 +84,7 @@ function PageFifteen({ formData, setFormData }) {
                 onChange={(e) => setFormData({...formData, registrySellPrice: e.target.value})}
             />
         </div>
-        <div className='pageForm_fifteen_row'>
+        <div className='pageForm_fifteen_row form_input'>
             <label htmlFor='registryHouseAddress'>Avenida / Rua <span className='inpunt__required'>*</span></label>
             <input
                 id="registryHouseAddress"
@@ -93,7 +93,7 @@ function PageFifteen({ formData, setFormData }) {
                 onChange={(e) => setFormData({...formData, registryHouseAddress: e.target.value})}
             />
         </div>
-        <div className='pageForm_fifteen_row'>
+        <div className='pageForm_fifteen_row form_input'>
             <label htmlFor='registryHouseNumber'>Número <span className='inpunt__required'>*</span></label>
             <input
                 id="registryHouseNumber"
@@ -102,7 +102,7 @@ function PageFifteen({ formData, setFormData }) {
                 onChange={(e) => setFormData({...formData, registryHouseNumber: e.target.value})}
             />
         </div>
-        <div className='pageForm_fifteen_row'>
+        <div className='pageForm_fifteen_row form_input'>
             <label htmlFor='registryHouseComp'>Complemento</label>
             <input
                 id="registryHouseComp"
@@ -111,7 +111,7 @@ function PageFifteen({ formData, setFormData }) {
                 onChange={(e) => setFormData({...formData, registryHouseComp: e.target.value})}
             />
         </div>
-        <div className='pageForm_fifteen_row'>
+        <div className='pageForm_fifteen_row form_input'>
             <label htmlFor='registryHouseNeighborhood'>Bairro <span className='inpunt__required'>*</span></label>
             <input
                 id="registryHouseNeighborhood"
@@ -120,7 +120,7 @@ function PageFifteen({ formData, setFormData }) {
                 onChange={(e) => setFormData({...formData, registryHouseNeighborhood: e.target.value})}
             />
         </div>
-        <div className='pageForm_fifteen_row'>
+        <div className='pageForm_fifteen_row form_input'>
             <label htmlFor='registryHouseCity'>Cidade <span className='inpunt__required'>*</span></label>
             <input
                 id="registryHouseCity"
@@ -129,7 +129,7 @@ function PageFifteen({ formData, setFormData }) {
                 onChange={(e) => setFormData({...formData, registryHouseCity: e.target.value})}
             />
         </div>
-        <div className='pageForm_fifteen_row'>
+        <div className='pageForm_fifteen_row form_input'>
             <label htmlFor='registryHouseState'>Estado <span className='inpunt__required'>*</span></label>
             <select
                 name="registryHouseState"
@@ -144,8 +144,21 @@ function PageFifteen({ formData, setFormData }) {
                 })}
             </select>
         </div>
-        <div className='pageForm_fifteen_row'>
+        <div className='pageForm_fifteen_row form_input_file'>
             <label htmlFor='registryCertifiedFile'>Certidão de Ônus com Inteiro Teor do Imóvel <span className='inpunt__required'>*</span></label>
+            <input
+                type="file"
+                onChange={(e) => setOnusImg(e.target.files[0])}
+                required
+            />
+            <img
+              src={
+                onusImg
+                  ? URL.createObjectURL(onusImg)
+                  : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
+              }
+              alt=""
+            />
         </div>
     </div>
   )

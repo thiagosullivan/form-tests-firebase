@@ -5,13 +5,14 @@ function PageFour({  formData, setFormData }) {
     <div className='pageFour_form'>
       <h2>Dados do imóvel</h2>
       <p>Confirme o imóvel para qual você deseja preencher os dados:</p>
-      <div className='pageFour_form_row'>
+      <div className='pageFour_form_row form_input'>
         <p>Imóvel: <span className='inpunt__required'>*</span></p>
         <select
           value={formData.houseType}
           onChange={(e) => {
             setFormData({...formData, houseType: e.target.value});
           }}
+          required
         >
           <option
             name="houseType"
@@ -45,6 +46,7 @@ function PageFour({  formData, setFormData }) {
             onChange={(e) => {
               setFormData({...formData, personType: e.target.value});
             }}
+            required
           />
           <label htmlFor='PessoaFísica'>Pessoa Física</label>
         </div>
@@ -58,6 +60,7 @@ function PageFour({  formData, setFormData }) {
             onChange={(e) => {
               setFormData({...formData, personType: e.target.value});
             }}
+            required
           />
           <label htmlFor='PessoaJurídica'>Pessoa Jurídica</label>
         </div>

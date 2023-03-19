@@ -4,7 +4,7 @@ function PageNine({ formData, setFormData}) {
   return (
     <div className='pageForm_nine'>
       <h2>Estado civil do cliente</h2>
-      <div className='pageForm_nine_row'>
+      <div className='pageForm_nine_row form_input'>
         <label>Estado Civil <span className='inpunt__required'>*</span></label>
         <select value={formData.maritalStatus} onChange={(e) => setFormData({...formData, maritalStatus: e.target.value})}>
           <option value="">Selecionar...</option>

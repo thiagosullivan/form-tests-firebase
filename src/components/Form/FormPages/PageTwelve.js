@@ -4,7 +4,7 @@ function PageTwelve({ formData, setFormData }) {
   return (
     <div className='pageForm_twelve'>
         <h2>Referências Pessoais 1</h2>
-        <div className='pageForm_twelve_row'>
+        <div className='pageForm_twelve_row form_input'>
             <label htmlFor='personalRefOneName'>Nome <span className='inpunt__required'>*</span></label>
             <input
                 type="text"
@@ -13,7 +13,7 @@ function PageTwelve({ formData, setFormData }) {
                 onChange={(e) => setFormData({...formData, personalRefOneName: e.target.value})}
             />
         </div>
-        <div className='pageForm_twelve_row'>
+        <div className='pageForm_twelve_row form_input'>
             <label htmlFor='personalRefOnePhone'>Telefone <span className='inpunt__required'>*</span></label>
             <input
                 type="tel"

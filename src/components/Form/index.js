@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 // Firebase
 import { doc, setDoc, serverTimestamp } from "firebase/firestore";
-import { db } from "../../firebase";
+import { db, storage } from "../../firebase";
+import { uuidv4 } from '@firebase/util';
+import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 // Icons
 import {GrFormPrevious, GrFormNext} from 'react-icons/gr';
 import {FiSend} from 'react-icons/fi';
@@ -25,6 +27,10 @@ import PageFourteen from '../../components/Form/FormPages/PageFourteen';
 import PageFifteen from '../../components/Form/FormPages/PageFifteen';
 
 function Form() {
+    const [loading, setLoading] = useState(false)
+    const [selfieImg, setSelfieImg] = useState(null)
+    const [onusImg, setOnusImg] = useState(null)
+    console.log()
     const [formData, setFormData] = useState({
         typeForm:"",
         agentCode: "",
@@ -62,11 +68,12 @@ function Form() {
         personalRefOneName: "",
         personalRefOnePhone: "",
         personalRefTwoName: "",
-        personalRefTwoPhone: "",
+        personalRefTwoPhone: ""
+         
       })
     const formComponents = [
         <PageOne formData={formData} setFormData={setFormData} />,
-        <PageTwo formData={formData} setFormData={setFormData} />,
+        <PageTwo formData={formData} setFormData={setFormData} selfieImg={selfieImg} setSelfieImg={setSelfieImg} />,
         <PageThree formData={formData} setFormData={setFormData}/>,
         <PageFour formData={formData} setFormData={setFormData}/>,
         <PageFive formData={formData} setFormData={setFormData}/>,
@@ -79,7 +86,7 @@ function Form() {
         <PageTwelve formData={formData} setFormData={setFormData}/>,
         <PageThirteen formData={formData} setFormData={setFormData}/>,
         <PageFourteen formData={formData} setFormData={setFormData}/>,
-        <PageFifteen formData={formData} setFormData={setFormData}/>,
+        <PageFifteen formData={formData} setFormData={setFormData} onusImg={onusImg} setOnusImg={setOnusImg} />,
     ]
 
     console.log(formData)
@@ -92,13 +99,50 @@ function Form() {
         isFirstStep
     } = useForm(formComponents)
 
+    useEffect(() => {
+        const uploadSelfie = () => {
+            if (selfieImg == null) return;
+            const selfieRef = ref(storage, `img/selfies/${ uuidv4()}`)
+            const uploadSelfie = uploadBytesResumable(selfieRef, selfieImg)
+
+            uploadSelfie.on('state_changed', 
+                () => {
+                    getDownloadURL(uploadSelfie.snapshot.ref).then((downloadURL) => {
+                        setFormData((prev)=>({...prev, selfieUrl:downloadURL}))
+                    });
+                }
+            );
+        }
+        selfieImg && uploadSelfie()
+    },[selfieImg])
+    
+    useEffect(() => {
+        const uploadOnus = () => {
+            if (onusImg == null) return;
+            const onusRef = ref(storage, `img/onus/${ uuidv4()}`)
+            const uploadOnus = uploadBytesResumable(onusRef, onusImg)
+
+            uploadOnus.on('state_changed', 
+                () => {
+                    getDownloadURL(uploadOnus.snapshot.ref).then((downloadURL) => {
+                        setFormData((prev)=>({...prev, onusImgUrl:downloadURL}))
+                    });
+                }
+            );
+        }
+        onusImg && uploadOnus()
+    }, [onusImg])
+    
+
     const handleFormSubmit = async (e) => {
         e.preventDefault();
         try {
+            setLoading(true)
             await setDoc(doc(db, "locatarios", formData.userEmail), {
             ...formData,
             timeStamp: serverTimestamp()
             });
+            setLoading(false)
             console.log("ENVIADO!")
         } catch (error) {
             console.log(error.message)
@@ -109,7 +153,12 @@ function Form() {
     return (
         <div>
             <p>Etapas</p>
-            <form onSubmit={handleFormSubmit}>
+            {loading && (
+                <div>
+                    Carregando...
+                </div>
+            )}
+            <form onSubmit={(e) => changeStep(currentStep + 1, e)}>
                 <div className='input_container'>
                     {currentComponent}
                 </div>
@@ -121,12 +170,12 @@ function Form() {
                         </button>
                     )}
                     {!isLastStep ? (
-                        <button type='button' onClick={(e) => changeStep(currentStep + 1, e)}>
+                        <button type='submit'>
                             <GrFormNext />
                             <span>Avançar</span>
                         </button>
                     ) : (
-                        <button type='submit'>
+                        <button type='button' onClick={handleFormSubmit}>
                             <FiSend />
                             <span>Enviar</span>
                         </button>

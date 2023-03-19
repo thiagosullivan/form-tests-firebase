@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 function PageOne({ formData, setFormData }) {
-  // const [ emptyField, setEmptyField ] = useState();
 
   return (
     <div className='pageOne_form'>

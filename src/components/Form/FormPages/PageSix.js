@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import MaskedInput  from 'react-input-mask';
 
 function PageSix({ formData, setFormData }) {
   const BrazilStates = [
@@ -34,16 +35,25 @@ function PageSix({ formData, setFormData }) {
   return (
     <div className='pageForm_six'>
       <h2>Endereço residencial</h2>
-      <div className='pageForm_six_row'>
+      <div className='pageForm_six_row form_input'>
         <label htmlFor='CEP'>CEP do seu endereço <span className='inpunt__required'>*</span></label>
-        <input
+        {/* <input
           type="text"
           id="CEP"
           value={formData.CEP}
           onChange={(e) => {setFormData({...formData, CEP: e.target.value})}}
+        /> */}
+        <MaskedInput
+          mask="99999-999"
+          placeholder='999999-999'
+          type="text"
+          id="CEP"
+          value={formData.CEP}
+          onChange={(e) => {setFormData({...formData, CEP: e.target.value})}}
+          required
         />
       </div>
-      <div className='pageForm_six_row'>
+      <div className='pageForm_six_row form_input'>
         <label htmlFor='addressStreet'>Nome da Rua <span className='inpunt__required'>*</span></label>
         <input
           id='addressStreet'
@@ -52,7 +62,7 @@ function PageSix({ formData, setFormData }) {
           onChange={(e) => {setFormData({...formData, addressStreet: e.target.value})}}
         />
       </div>
-      <div className='pageForm_six_row'>
+      <div className='pageForm_six_row form_input'>
         <label htmlFor='addressNumber'>Número</label>
         <input
           id="addressNumber"
@@ -61,7 +71,7 @@ function PageSix({ formData, setFormData }) {
           onChange={(e) => {setFormData({...formData, addressNumber: e.target.value})}}
         />
       </div>
-      <div className='pageForm_six_row'>
+      <div className='pageForm_six_row form_input'>
         <label htmlFor='addressComp'>Complemento<span className='inpunt__required'>*</span></label>
         <div className='littleInfos'>Número do apartamento, sala ou torre se houver</div>
         <input
@@ -71,7 +81,7 @@ function PageSix({ formData, setFormData }) {
           onChange={(e) => {setFormData({...formData, addressComp: e.target.value})}}
         />
       </div>
-      <div className='pageForm_six_row'>
+      <div className='pageForm_six_row form_input'>
         <label htmlFor='neighborhood'>Bairro <span className='inpunt__required'>*</span></label>
         <input
           id="neighborhood"
@@ -80,7 +90,7 @@ function PageSix({ formData, setFormData }) {
           onChange={(e) => {setFormData({...formData, neighborhood: e.target.value})}}
         />
       </div>
-      <div className='pageForm_six_row'>
+      <div className='pageForm_six_row form_input'>
         <label htmlFor='addressCity'>Cidade <span className='inpunt__required'>*</span></label>
         <input
           id="addressCity"
@@ -89,7 +99,7 @@ function PageSix({ formData, setFormData }) {
           onChange={(e) => {setFormData({...formData, addressCity: e.target.value})}}
         />
       </div>
-      <div className='pageForm_six_row'>
+      <div className='pageForm_six_row form_input'>
         <label htmlFor='addressState'>Estado <span className='inpunt__required'>*</span></label>
         <select
           name="addressState"
@@ -104,7 +114,7 @@ function PageSix({ formData, setFormData }) {
           })}
         </select>
       </div>
-      <div className='pageForm_six_row'>
+      <div className='pageForm_six_row form_input'>
         <label htmlFor='addressTime'>Há quanto tempo que já esta neste endereço? <span className='inpunt__required'>*</span></label>
         <input
           id='addressTime'
@@ -113,7 +123,7 @@ function PageSix({ formData, setFormData }) {
           onChange={(e) => {setFormData({...formData, addressTime: e.target.value})}}
         />
       </div>
-      <div className='pageForm_six_row'>
+      <div className='pageForm_six_row form_input'>
         <label htmlFor='ownRent'>Própria ou Locada? <span className='inpunt__required'>*</span></label>
         <select
           value={formData.ownRent}
