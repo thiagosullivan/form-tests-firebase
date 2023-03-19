@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { db } from "../../firebase";
 import { collection, query, where, getDocs, orderBy, onSnapshot } from "firebase/firestore";
+import { Link } from 'react-router-dom';
 
 function ListPage() {
   const [data, setData] = useState([]);
@@ -29,6 +30,9 @@ function ListPage() {
 
   return (
     <div className='list__page'>
+        <div className='navigation_links'>
+            <Link to="/">Ir para o form</Link>
+        </div>
         <h1>Listas</h1>
         <div className='list__data'>
           {data.map((locat, index) => {

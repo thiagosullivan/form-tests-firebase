@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 // Firebase
 import { doc, setDoc, serverTimestamp } from "firebase/firestore";
 import { db, storage } from "../../firebase";
@@ -157,6 +157,9 @@ function Form() {
     
     return (
         <div>
+            <div className='navigation_links'>
+                <Link to="/lista">Ir para a lista</Link>
+            </div>
             <p>Etapas</p>            
             <form onSubmit={(e) => changeStep(currentStep + 1, e)}>
                 <div className='input_container'>
