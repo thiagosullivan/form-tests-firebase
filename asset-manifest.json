@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/form-tests-firebase/static/css/main.b7dc6e37.css",
-    "main.js": "/form-tests-firebase/static/js/main.700dcbcc.js",
+    "main.css": "/form-tests-firebase/static/css/main.aefa3a80.css",
+    "main.js": "/form-tests-firebase/static/js/main.eb3b6de3.js",
     "index.html": "/form-tests-firebase/index.html",
-    "main.b7dc6e37.css.map": "/form-tests-firebase/static/css/main.b7dc6e37.css.map",
-    "main.700dcbcc.js.map": "/form-tests-firebase/static/js/main.700dcbcc.js.map"
+    "main.aefa3a80.css.map": "/form-tests-firebase/static/css/main.aefa3a80.css.map",
+    "main.eb3b6de3.js.map": "/form-tests-firebase/static/js/main.eb3b6de3.js.map"
   },
   "entrypoints": [
-    "static/css/main.b7dc6e37.css",
-    "static/js/main.700dcbcc.js"
+    "static/css/main.aefa3a80.css",
+    "static/js/main.eb3b6de3.js"
   ]
 }
