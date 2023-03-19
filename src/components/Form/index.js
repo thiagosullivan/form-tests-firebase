@@ -160,7 +160,7 @@ function Form() {
             <div className='navigation_links'>
                 <Link to="/lista">Ir para a lista</Link>
             </div>
-            <p>Etapas</p>            
+            <h1>Formulário</h1>         
             <form onSubmit={(e) => changeStep(currentStep + 1, e)}>
                 <div className='input_container'>
                     {currentComponent}

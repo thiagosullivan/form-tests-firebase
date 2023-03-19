@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 function PageTwo({ formData, setFormData, setSelfieImg, selfieImg }) {
 
   return (
-    <div className='pageTwo_form form_input_file'>
+    <div className='pageTwo_form'>
       <h2>Envie sua Selfie!</h2>
       <p className='littleInfos'>Essa validação é obrigatória. Caso você não consiga anexar uma selfie, informe seu corretor pois o não envio dessa informação pode acarretar em <strong>reprovação automática</strong>.</p>
       <input

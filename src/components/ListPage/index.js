@@ -93,6 +93,10 @@ function ListPage() {
                     <p><strong>Tipo de pessoa:</strong> {locat.personType}</p>
                     <p><strong>Nome da imobiliária:</strong> {locat.rentName}</p>
                     <p><strong>Telefone da imobiliária:</strong> {locat.rentPhone}</p>
+                    <div className='list__selfie'>
+                      <p><strong>Certidão de Ônus:</strong></p>
+                      <img src={locat.onusImgUrl ? locat.onusImgUrl : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"} alt="Certidão de Ônus"/>
+                    </div>
                   </div>
                 </div>
                 <div className='list_col5'>

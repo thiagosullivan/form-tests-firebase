@@ -48,6 +48,7 @@ form {
   height: 30px;
   outline: none;
   border-radius: 5px;
+  padding-left: 10px;
 }
 .form_input label {
   margin-bottom: 5px;
