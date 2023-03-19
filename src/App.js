@@ -6,7 +6,7 @@ import './index.css';
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={window.location.pathname || ''}>
       <div className="App">
         <Routes>
           <Route exact path="/" element={<Form />} />
