@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 // Firebase
 import { doc, setDoc, serverTimestamp } from "firebase/firestore";
 import { db, storage } from "../../firebase";
@@ -30,6 +31,8 @@ function Form() {
     const [loading, setLoading] = useState(false)
     const [selfieImg, setSelfieImg] = useState(null)
     const [onusImg, setOnusImg] = useState(null)
+    const navigate = useNavigate();
+
     console.log()
     const [formData, setFormData] = useState({
         typeForm:"",
@@ -139,11 +142,13 @@ function Form() {
         try {
             setLoading(true)
             await setDoc(doc(db, "locatarios", formData.userEmail), {
-            ...formData,
-            timeStamp: serverTimestamp()
+                ...formData,
+                timeStamp: serverTimestamp(),
+                id:formData.userEmail
             });
             setLoading(false)
             console.log("ENVIADO!")
+            navigate("/confirmacao")
         } catch (error) {
             console.log(error.message)
         }
@@ -152,16 +157,16 @@ function Form() {
     
     return (
         <div>
-            <p>Etapas</p>
-            {loading && (
-                <div>
-                    Carregando...
-                </div>
-            )}
+            <p>Etapas</p>            
             <form onSubmit={(e) => changeStep(currentStep + 1, e)}>
                 <div className='input_container'>
                     {currentComponent}
                 </div>
+                {loading && (
+                    <div>
+                        Carregando...
+                    </div>
+                )}
                 <div className='actions'>
                     {!isFirstStep && (
                         <button type='button' onClick={() => changeStep(currentStep - 1)}>
@@ -171,8 +176,8 @@ function Form() {
                     )}
                     {!isLastStep ? (
                         <button type='submit'>
-                            <GrFormNext />
                             <span>Avançar</span>
+                            <GrFormNext />
                         </button>
                     ) : (
                         <button type='button' onClick={handleFormSubmit}>

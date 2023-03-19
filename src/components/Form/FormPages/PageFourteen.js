@@ -10,8 +10,10 @@ function PageFourteen() {
                 <input
                     type="radio"
                     value="Sim"
+                    name='confirmationInput'
+                    id="ConfirmationYes"
                 />
-                <label>
+                <label htmlFor='ConfirmationYes'>
                     Sim
                 </label>
             </div>
@@ -19,8 +21,10 @@ function PageFourteen() {
                 <input
                     type="radio"
                     value="Não"
+                    name='confirmationInput'
+                    id="ConfirmationNo"
                 />
-                <label>
+                <label htmlFor='ConfirmationNo'>
                     Não
                 </label>
             </div>
